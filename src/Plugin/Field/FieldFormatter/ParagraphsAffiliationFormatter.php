@@ -25,6 +25,8 @@ class ParagraphsAffiliationFormatter extends FormatterBase {
   /**
    * {@inheritdoc}
    */
+   
+ 
   public function settingsSummary() {
     $summary = [];
     $summary[] = $this->t('Formats the affiliation field of Drupal.');
@@ -38,13 +40,16 @@ class ParagraphsAffiliationFormatter extends FormatterBase {
     $element = [];
 	
 	// Render each element as markup in case of multi-values.
-    foreach ($items as $delta => $item) {
-      
+
+	foreach ($items as $delta => $item) {
+		  
 	  // Desired fields: field_network_name, field_network_specific_site_code, field_network_verified;
 	  $network_name_tid = render($item->entity->field_network_name->target_id);
 	  $full_taxonomy_term_object = taxonomy_term_load($network_name_tid);
-	  $network_label = $full_taxonomy_term_object->getName();	  
 	  
+	  if ($full_taxonomy_term_object) {
+		$network_label = $full_taxonomy_term_object->getName();	  
+	  }
 	  if ($item->entity->field_network_specific_site_code->value) {
 		$network_site_code = " (" . render($item->entity->field_network_specific_site_code->value) . ")";
 	  }
@@ -56,14 +61,14 @@ class ParagraphsAffiliationFormatter extends FormatterBase {
 	  if ($network_site_verified) {
 		  $network_site_verified = '<sup>✓</sup>';
 	  }
-	  
-      $element[$delta] = [
+		  
+	  $element[$delta] = [
 		'#markup' => $network_label . $network_site_verified . $network_site_code
 	  ];
 	} 
-	 
-	 
-    return $element;
+	// sort elements of result alphabetically
+	sort($element);
+	return $element;
   }
-
+	
 }
