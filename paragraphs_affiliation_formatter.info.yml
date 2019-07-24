@@ -1,6 +1,8 @@
 name: Paragraphs Affiliation Formatter
-description: Provides formatters for styling the content of the affiliation field
+description: Provides two formatters for styling the content of the affiliation field
 package: Custom
 type: module
 version: 8.x-1.0
 core: 8.x
+dependencies:
+  - paragraphs

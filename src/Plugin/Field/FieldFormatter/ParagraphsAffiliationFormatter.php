@@ -44,26 +44,41 @@ class ParagraphsAffiliationFormatter extends FormatterBase {
 	foreach ($items as $delta => $item) {
 		  
 	  // Desired fields: field_network_name, field_network_specific_site_code, field_network_verified;
-	  $network_name_tid = render($item->entity->field_network_name->target_id);
-	  $full_taxonomy_term_object = taxonomy_term_load($network_name_tid);
-	  
-	  if ($full_taxonomy_term_object) {
+	  if ($item->entity->field_network_name->target_id) {
+		$network_name_tid = $item->entity->field_network_name->target_id;
+	    $full_taxonomy_term_object = taxonomy_term_load($network_name_tid);
 		$network_label = $full_taxonomy_term_object->getName();	  
 	  }
+	  else {
+		break;
+	  }  
+	  // add network related site code if existant
 	  if ($item->entity->field_network_specific_site_code->value) {
-		$network_site_code = " (" . render($item->entity->field_network_specific_site_code->value) . ")";
+		$network_site_code = " (" . $item->entity->field_network_specific_site_code->value . ")";
 	  }
 	  else {
 		$network_site_code = "";
 	  }
-
-	  $network_site_verified = render($item->entity->field_network_verified->value);
-	  if ($network_site_verified) {
-		  $network_site_verified = '<sup>✓</sup>';
+	  // add verification status, if it is a verified site
+	  if ($item->entity->field_network_verified->value) {
+		$network_site_verified = $item->entity->field_network_verified->value;
+		$network_site_verified = '<sup class="green-check">✔</sup>';
+		$network_element = '<div class="verification-tooltip">' . $network_label . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext">This site is a verified ' .$network_label. ' member</span></div>';
+	  
 	  }
-		  
+	  else {
+		  $network_site_verified = "";
+		  $network_element = '<div class="verification-tooltip">' . $network_label . $network_site_verified . $network_site_code . '</div>';
+	  }
+	  
+	  
 	  $element[$delta] = [
-		'#markup' => $network_label . $network_site_verified . $network_site_code
+		'#markup' => $network_element,
+		'#attached' => [
+			'library' => [
+			  'paragraphs_affiliation_formatter/paragraphs-affiliation-formatter-style',
+			],
+		]
 	  ];
 	} 
 	// sort elements of result alphabetically
