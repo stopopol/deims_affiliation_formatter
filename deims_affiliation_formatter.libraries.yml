@@ -1,0 +1,5 @@
+deims-affiliation-formatter-style:
+  version: 1.x
+  css:
+    layout:
+      css/deims_affiliation_formatter.css: {}

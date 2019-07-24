@@ -1,0 +1,41 @@
+.green-check {
+	color:green;
+}
+
+.verification-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.verification-tooltip .verification-tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #6d9538;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  margin-bottom: 5px;
+}
+
+.verification-tooltip .verification-tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #6d9538 transparent transparent transparent;
+}
+
+.verification-tooltip:hover .verification-tooltiptext {
+  visibility: visible;
+}
