@@ -1,5 +1,0 @@
-paragraphs-affiliation-formatter-style:
-  version: 1.x
-  css:
-    layout:
-      css/paragraphs_affiliation_formatter.css: {}
