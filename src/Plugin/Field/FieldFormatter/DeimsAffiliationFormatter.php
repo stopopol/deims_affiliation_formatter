@@ -44,10 +44,9 @@ class DeimsAffiliationFormatter extends FormatterBase {
 	foreach ($items as $delta => $item) {
 		  
 	  // Desired fields: field_network_name, field_network_specific_site_code, field_network_verified;
-	  if ($item->entity->field_network_name->target_id) {
-		$network_name_tid = $item->entity->field_network_name->target_id;
-	    $full_taxonomy_term_object = taxonomy_term_load($network_name_tid);
-		$network_label = $full_taxonomy_term_object->getName();	  
+	  if ($item->entity->field_network) {
+		 $network_label = $item->entity->field_network->entity->field_name->value;
+		 //$network_label = $item->entity->field_network->entity->getTitle();
 	  }
 	  else {
 		break;
