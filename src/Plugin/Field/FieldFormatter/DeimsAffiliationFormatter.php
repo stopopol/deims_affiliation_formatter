@@ -44,7 +44,7 @@ class DeimsAffiliationFormatter extends FormatterBase {
 	foreach ($items as $delta => $item) {
 		  
 	  // Desired fields: field_network_name, field_network_specific_site_code, field_network_verified;
-	  if (!$item->entity->field_network->entity->field_name->isEmpty()) {
+	  if (!$item->entity->field_network->entity->field_name->isEmpty) {
 		 $network_label = $item->entity->field_network->entity->field_name->value;
 	  }
 	  else {
