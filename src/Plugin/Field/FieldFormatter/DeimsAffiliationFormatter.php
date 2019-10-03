@@ -45,7 +45,12 @@ class DeimsAffiliationFormatter extends FormatterBase {
 		  
 	  // Desired fields: field_network_name, field_network_specific_site_code, field_network_verified;
 	  if ($item->entity) {
-		 $network_label = $item->entity->field_network->entity->field_name->value;
+		 if ($item->entity->field_network->entity) {
+		 	$network_label = $item->entity->field_network->entity->field_name->value;
+		 }
+		 else {
+		 	break;
+		 }
 	  }
 	  else {
 		break;
