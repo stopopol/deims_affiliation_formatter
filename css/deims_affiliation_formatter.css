@@ -6,6 +6,10 @@
 	color:red;
 }
 
+.smaller_font {
+  font-size: smaller;
+}
+
 .verification-tooltip {
   position: relative;
   display: inline-block;
