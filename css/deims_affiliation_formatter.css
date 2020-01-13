@@ -1,8 +1,17 @@
-.green-check {
+.green-colour {
 	color:green;
 }
 
+.red-colour {
+	color:red;
+}
+
 .verification-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.verification-tooltip-unverified {
   position: relative;
   display: inline-block;
 }
@@ -25,6 +34,25 @@
   margin-bottom: 5px;
 }
 
+.verification-tooltip-unverified .verification-tooltiptext-unverified {
+  visibility: hidden;
+  width: 120px;
+  background-color: #ff3333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  margin-bottom: 5px;
+}
+
+
 .verification-tooltip .verification-tooltiptext::after {
   content: "";
   position: absolute;
@@ -36,6 +64,22 @@
   border-color: #6d9538 transparent transparent transparent;
 }
 
+.verification-tooltip-unverified .verification-tooltiptext-unverified::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #ff3333 transparent transparent transparent;
+}
+
+
 .verification-tooltip:hover .verification-tooltiptext {
+  visibility: visible;
+}
+
+.verification-tooltip-unverified:hover .verification-tooltiptext-unverified {
   visibility: visible;
 }

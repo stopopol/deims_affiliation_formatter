@@ -46,7 +46,9 @@ class DeimsAffiliationFormatter extends FormatterBase {
 	  // Desired fields: field_network_name, field_network_specific_site_code, field_network_verified;
 	  if ($item->entity) {
 		 if ($item->entity->field_network->entity) {
-		 	$network_label = $item->entity->field_network->entity->field_name->value;
+			 $network_label = $item->entity->field_network->entity->field_name->value;
+			 $network_uuid = $item->entity->field_network->entity->get('uuid')->value;
+			 $network_url = '<a href="' . $base_url . '/network/' . $network_uuid . '">' . $network_label . '</a>';
 		 }
 		 else {
 		 	break;
@@ -64,14 +66,15 @@ class DeimsAffiliationFormatter extends FormatterBase {
 	  }
 	  // add verification status, if it is a verified site
 	  if ($item->entity->field_network_verified->value) {
-		$network_site_verified = $item->entity->field_network_verified->value;
-		$network_site_verified = '<sup class="green-check">✔</sup>';
-		$network_element = '<div class="verification-tooltip">' . $network_label . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext">This site is a verified ' .$network_label. ' member</span></div>';
+		  $network_site_verified = $item->entity->field_network_verified->value;
+		  $network_site_verified = '<sup class="green-colour">✔</sup>';
+		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext">This site is a verified "' . $network_label. '" member.</span></div>';
 	  
 	  }
 	  else {
-		  $network_site_verified = "";
-		  $network_element = '<div class="verification-tooltip">' . $network_label . $network_site_verified . $network_site_code . '</div>';
+		  $network_site_verified = '<sup class="red-colour">✖</sup>';
+		  $network_element = '<div class="verification-tooltip-unverified">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext-unverified">The affiliation of this site with "' . $network_label. '" is not verified.</span></div>';
+	  
 	  }
 	  
 	  
