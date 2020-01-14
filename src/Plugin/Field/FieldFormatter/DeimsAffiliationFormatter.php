@@ -68,12 +68,12 @@ class DeimsAffiliationFormatter extends FormatterBase {
 	  if ($item->entity->field_network_verified->value) {
 		  $network_site_verified = $item->entity->field_network_verified->value;
 		  $network_site_verified = '<sup class="green-colour">✔</sup>';
-		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext">This site is a verified "' . $network_label. '" member.</span></div>';
+		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext verfication-colour-green verfication-border-colour-green">This site is a verified "' . $network_label. '" member.</span></div>';
 	  
 	  }
 	  else {
 		  $network_site_verified = '<sup class="red-colour">✖</sup>';
-		  $network_element = '<div class="verification-tooltip-unverified">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext-unverified">The affiliation of this site with "' . $network_label. '" is not verified.</span></div>';
+		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext verfication-colour-red verfication-border-colour-red">The affiliation of this site with "' . $network_label. '" is not verified.</span></div>';
 	  
 	  }
 	  
