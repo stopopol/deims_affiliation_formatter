@@ -38,11 +38,11 @@ class DeimsAffiliationFormatter extends FormatterBase {
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $element = [];
-	
-	// Render each element as markup in case of multi-values.
+	global $base_url;
 
+	// Render each element as markup in case of multi-values.
 	foreach ($items as $delta => $item) {
-		  
+
 	  // Desired fields: field_network_name, field_network_specific_site_code, field_network_verified;
 	  if ($item->entity) {
 		 if ($item->entity->field_network->entity) {
@@ -76,7 +76,6 @@ class DeimsAffiliationFormatter extends FormatterBase {
 		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext verfication-colour-red verfication-border-colour-red">The affiliation of this site with "' . $network_label. '" is not verified.</span></div>';
 	  
 	  }
-	  
 	  
 	  $element[$delta] = [
 		'#markup' => $network_element,
