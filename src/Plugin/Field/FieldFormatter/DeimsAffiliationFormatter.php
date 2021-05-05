@@ -60,7 +60,7 @@ class DeimsAffiliationFormatter extends FormatterBase {
 	  // add network related site code if existant
 	  if ($item->entity->field_network_specific_site_code->value) {
 		$network_site_code = $item->entity->field_network_specific_site_code->value;
-		  if (filter_var($network_site_code, FILTER_VALIDATE_URL) === TRUE) {
+		  if (filter_var($network_site_code, FILTER_VALIDATE_URL)) {
 			  $network_site_code = '<a href="' . $network_site_code . '">' . $network_site_code . "</a>";
 		}
 		$network_site_code = "<sub>  (" . $network_site_code . ")</sub>";
