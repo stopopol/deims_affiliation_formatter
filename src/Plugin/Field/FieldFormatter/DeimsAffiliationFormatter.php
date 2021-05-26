@@ -48,7 +48,7 @@ class DeimsAffiliationFormatter extends FormatterBase {
 		 if ($item->entity->field_network->entity) {
 			 $network_label = $item->entity->field_network->entity->field_name->value;
 			 $network_uuid = $item->entity->field_network->entity->get('uuid')->value;
-			 $network_url = '<a href="' . $base_url . '/network/' . $network_uuid . '">' . $network_label . '</a>';
+			 $network_url = '<a href="' . $base_url . '/networks/' . $network_uuid . '">' . $network_label . '</a>';
 		 }
 		 else {
 		 	break;
@@ -73,7 +73,6 @@ class DeimsAffiliationFormatter extends FormatterBase {
 		  $network_site_verified = $item->entity->field_network_verified->value;
 		  $network_site_verified = '<sup class="green-colour">✔</sup>';
 		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext verfication-colour-green verfication-border-colour-green">This site is a verified "' . $network_label. '" member.</span></div>';
-	  
 	  }
 	  else {
 		  $network_site_verified = '<sup class="red-colour">✖</sup>';
