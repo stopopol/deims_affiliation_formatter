@@ -1,0 +1,7 @@
+{
+    "name": "stopopol/deims_affiliation_formatter",
+    "description": "renders the network affiliation of a single site on DEIMS-SDR",
+    "type": "drupal-module",
+    "homepage": "https://github.com/stopopol/deims_affiliation_formatter"
+}
+
