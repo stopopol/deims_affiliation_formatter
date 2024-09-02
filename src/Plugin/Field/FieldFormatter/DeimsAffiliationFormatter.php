@@ -60,23 +60,37 @@ class DeimsAffiliationFormatter extends FormatterBase {
 	  // add network related site code if existant
 	  if ($item->entity->field_network_specific_site_code->value) {
 		$network_site_code = $item->entity->field_network_specific_site_code->value;
-		  if (filter_var($network_site_code, FILTER_VALIDATE_URL)) {
-			  $network_site_code = '<a href="' . $network_site_code . '">' . $network_site_code . "</a>";
-		}
-		$network_site_code = "<sub>  (" . $network_site_code . ")</sub>";
+		
+		  if (str_contains($network_site_code, ',')) {
+			$network_site_code = explode(",", $network_site_code);
+		  }
+		  else {
+			$network_site_code = [$network_site_code];
+		  }
+		  
+		  $formatted_site_code = '';
+		  foreach ($network_site_code as $code) {
+			$code = str_replace(' ', '', $code);
+			if (filter_var($code, FILTER_VALIDATE_URL)) {
+			  $code = '<a href="' . $code . '">' . $code . "</a>";
+		    }
+		    $formatted_site_code = $formatted_site_code . "<sub>  (" . $code . ")</sub> ";
+		  }
+		  $formatted_site_code = substr($formatted_site_code, 0, -1);
+		
 	  }
 	  else {
-		$network_site_code = "";
+		$formatted_site_code = "";
 	  }
 	  // add verification status, if it is a verified site
 	  if ($item->entity->field_network_verified->value) {
 		  $network_site_verified = $item->entity->field_network_verified->value;
 		  $network_site_verified = '<sup class="green-colour">✔</sup>';
-		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext verfication-colour-green verfication-border-colour-green">This site is a verified "' . $network_label. '" member.</span></div>';
+		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $formatted_site_code . '<span class="verification-tooltiptext verfication-colour-green verfication-border-colour-green">This site is a verified "' . $network_label. '" member.</span></div>';
 	  }
 	  else {
 		  $network_site_verified = '<sup class="red-colour">✖</sup>';
-		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $network_site_code . '<span class="verification-tooltiptext verfication-colour-red verfication-border-colour-red">The affiliation of this site with "' . $network_label. '" is not verified by the network on DEIMS-SDR.</span></div>';
+		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $formatted_site_code . '<span class="verification-tooltiptext verfication-colour-red verfication-border-colour-red">The affiliation of this site with "' . $network_label. '" is not verified by the network on DEIMS-SDR.</span></div>';
 	  }
 	  
 	  $element[$delta] = [
