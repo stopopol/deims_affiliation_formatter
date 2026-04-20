@@ -7,7 +7,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 
 
 /**
- * Plugin implementation of the 'DeimsAffiliationFormatterStruooed' formatter.
+ * Plugin implementation of the 'DeimsAffiliationFormatterStripped' formatter.
  *
  * @FieldFormatter(
  *   id = "deims_affiliation_formatter_stripped",
