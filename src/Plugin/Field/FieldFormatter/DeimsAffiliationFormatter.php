@@ -90,7 +90,7 @@ class DeimsAffiliationFormatter extends FormatterBase {
 	  }
 	  else {
 		  $network_site_verified = '<sup class="red-colour">✖</sup>';
-		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $formatted_site_code . '<span class="verification-tooltiptext verfication-colour-red verfication-border-colour-red">The affiliation of this site with "' . $network_label. '" is not verified by the network on DEIMS-SDR.</span></div>';
+		  $network_element = '<div class="verification-tooltip">' . $network_url . $network_site_verified . $formatted_site_code . '<span class="verification-tooltiptext verfication-colour-red verfication-border-colour-red">The affiliation of this site with "' . $network_label. '" is not verified by the network on DEIMS.</span></div>';
 	  }
 	  
 	  $element[$delta] = [
