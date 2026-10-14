@@ -1,6 +1,6 @@
-name: DEIMS-SDR Affiliation Formatter
+name: DEIMS Affiliation Formatter
 description: Provides three formatters for styling the content of the affiliation field
-package: DEIMS-SDR
+package: DEIMS
 type: module
 version: 8.x-1.0
 core_version_requirement: ^9 || ^10 || ^11
